@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class JumpPad : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private void OnCollisionEnter2D (Collision2D CollidedObject)
     {
-        
-    }
+        Rigidbody2D rigidBody = CollidedObject.collider.GetComponent<Rigidbody2D>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        Vector2 velocity = rigidBody.velocity;
+        velocity.y = 10f;
+        rigidBody.velocity = velocity;
+
     }
 }
