@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class Doodle : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    void Update ()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (transform.position.y > Camera.main.transform.position.y)
+        {
+            Vector3 newPos = new Vector3 (Camera.main.transform.position.x, transform.position.y, Camera.main.transform.position.z);
+            Camera.main.transform.position = newPos;
+        }
     }
 }
