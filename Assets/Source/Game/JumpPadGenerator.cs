@@ -28,7 +28,7 @@ public class JumpPadGenerator : MonoBehaviour
         Vector3 spawnPosition = Vector3.zero;
         int rand = Random.Range (1, 10);
         spawnPosition.x = Random.Range (-2f , 2f);
-        spawnPosition.y = jumpPad.transform.position.y + 1f;
+        spawnPosition.y = jumpPad.transform.position.y + 2f;
 
         switch (rand)
         {
@@ -54,6 +54,7 @@ public class JumpPadGenerator : MonoBehaviour
     {
         GameObject padGreen = Instantiate (jumpPad, padPosition, Quaternion.identity);
         padGreen.GetComponent<SpriteRenderer>().sprite = greenPadSprite;
+        padGreen.GetComponent<JumpPad>().Type = JumpPadType.Green;
 
         return padGreen;
     }
@@ -62,6 +63,7 @@ public class JumpPadGenerator : MonoBehaviour
     {
         GameObject padBrown = Instantiate (jumpPad, padPosition, Quaternion.identity);
         padBrown.GetComponent<SpriteRenderer>().sprite = brownPadSprite;
+        padBrown.GetComponent<JumpPad>().Type = JumpPadType.Brown;
 
         return padBrown;
     }
@@ -70,6 +72,7 @@ public class JumpPadGenerator : MonoBehaviour
     {
         GameObject padBlue = Instantiate (jumpPad, padPosition, Quaternion.identity);
         padBlue.GetComponent<SpriteRenderer>().sprite = bluePadSprite;
+        padBlue.GetComponent<JumpPad>().Type = JumpPadType.Blue;
 
         return padBlue;
     }

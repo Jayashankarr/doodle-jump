@@ -9,12 +9,12 @@ public class Level : MonoBehaviour
 
     [SerializeField]
     private GameObject jumpPadGenerator;
-    
+
     private void Start ()
     {
         Vector3 spawnPosition = Vector3.zero;
 
-        for (int i =0; i < 10; i++)
+        for (int i =0; i < 100; i++)
         {
             GameObject pad = jumpPadGenerator.GetComponent<JumpPadGenerator>().GenerateJumpPad();
 

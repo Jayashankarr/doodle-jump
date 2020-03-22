@@ -4,12 +4,26 @@ using UnityEngine;
 
 public class Doodle : MonoBehaviour
 {
-    void Update ()
+    public float movementSpeed = 10f;
+
+	Rigidbody2D rb;
+
+	float movement = 0f;
+
+	void Start () 
     {
-        if (transform.position.y > Camera.main.transform.position.y)
-        {
-            Vector3 newPos = new Vector3 (Camera.main.transform.position.x, transform.position.y, Camera.main.transform.position.z);
-            Camera.main.transform.position = newPos;
-        }
-    }
+		rb = GetComponent<Rigidbody2D>();
+	}
+	
+	void Update () 
+    {
+		movement = Input.GetAxis("Horizontal") * movementSpeed;
+	}
+
+	void FixedUpdate()
+	{
+		Vector2 velocity = rb.velocity;
+		velocity.x = movement;
+		rb.velocity = velocity;
+	}
 }
