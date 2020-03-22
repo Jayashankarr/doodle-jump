@@ -16,7 +16,11 @@ public class JumpPadGenerator : MonoBehaviour
     [SerializeField]
     private Sprite brownPadSprite;
 
+    private PadObjectType collectibleType = PadObjectType.NONE;
+
     private float currentY = 0.2f;
+
+    private int count = 0;
 
     void Start () 
     {
@@ -25,10 +29,24 @@ public class JumpPadGenerator : MonoBehaviour
 
     public GameObject GenerateJumpPad ()
     {
+        count++;
+        collectibleType = PadObjectType.NONE;
         Vector3 spawnPosition = Vector3.zero;
         int rand = Random.Range (1, 10);
         spawnPosition.x = Random.Range (-2f , 2f);
         spawnPosition.y = jumpPad.transform.position.y + 2f;
+
+        int randomObject = Random.Range (1,12);
+        switch (randomObject)
+        {
+            case 3:
+                collectibleType = PadObjectType.SPRING;
+            break;
+
+            case 5:
+                collectibleType = PadObjectType.ROCKET;
+            break;
+        }
 
         switch (rand)
         {
@@ -46,6 +64,7 @@ public class JumpPadGenerator : MonoBehaviour
 
         }
 
+        jumpPad.name = "JumpPad";
         return jumpPad;
         
     }
@@ -53,8 +72,26 @@ public class JumpPadGenerator : MonoBehaviour
     private GameObject padGreen (Vector3 padPosition)
     {
         GameObject padGreen = Instantiate (jumpPad, padPosition, Quaternion.identity);
+
         padGreen.GetComponent<SpriteRenderer>().sprite = greenPadSprite;
         padGreen.GetComponent<JumpPad>().Type = JumpPadType.Green;
+        padGreen.GetComponent<JumpPad>().SetSpring (false);
+        padGreen.GetComponent<JumpPad>().SetRocket (false);
+
+        switch (collectibleType)
+        {
+            case PadObjectType.SPRING:
+            padGreen.GetComponent<JumpPad>().SetSpring (true);
+            padGreen.GetComponent<JumpPad>().SetRocket (false);
+            break;
+
+            case PadObjectType.ROCKET:
+            padGreen.GetComponent<JumpPad>().SetSpring (false);
+            padGreen.GetComponent<JumpPad>().SetRocket (true);
+            break;
+        }
+
+        collectibleType = PadObjectType.NONE;
 
         return padGreen;
     }

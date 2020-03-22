@@ -4,12 +4,27 @@ using UnityEngine;
 
 public class JumpPad : MonoBehaviour
 {
-    private JumpPadType type;
+    [SerializeField]
+    private GameObject spring = null;
+
+    [SerializeField]
+    private GameObject rocket = null;
+
+    private JumpPadType type = JumpPadType.Green;
 
     public JumpPadType Type
     {
         set { type = value; }
         get { return type; }
+    }
+
+    private PadObjectType collectibleType = PadObjectType.NONE;
+
+    private int jumpPadIndex = 0;
+
+    private void Start ()
+    {
+
     }
 
     private void OnCollisionEnter2D (Collision2D CollidedObject)
@@ -41,5 +56,15 @@ public class JumpPad : MonoBehaviour
         Vector2 velocity = rigidBody.velocity;
         velocity.y = offset;
         rigidBody.velocity = velocity;
+    }
+
+    public void SetRocket (bool value)
+    {
+        rocket.SetActive (value);
+    }
+
+    public void SetSpring (bool value)
+    {
+        spring.SetActive (value);
     }
 }
