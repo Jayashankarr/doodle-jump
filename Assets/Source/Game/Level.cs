@@ -7,19 +7,23 @@ public class Level : MonoBehaviour
     [SerializeField]
     private GameObject jumbPad;
 
+    [SerializeField]
+    private GameObject jumpPadGenerator;
+    
     private void Start ()
     {
         Vector3 spawnPosition = Vector3.zero;
 
-        for (int i =0; i < 50; i++)
+        for (int i =0; i < 10; i++)
         {
-            if (jumbPad != null)
-            {
-                spawnPosition.x = Random.Range (-2f , 2f);
-                spawnPosition.y = spawnPosition.y + 1.5f;
+            GameObject pad = jumpPadGenerator.GetComponent<JumpPadGenerator>().GenerateJumpPad();
 
-                Instantiate (jumbPad, spawnPosition, Quaternion.identity);
-            }
+            //pad.transform.parent = transform;
         }
+    }
+
+    private void Update ()
+    {
+
     }
 }

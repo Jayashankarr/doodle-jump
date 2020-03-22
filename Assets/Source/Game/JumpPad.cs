@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class JumpPad : MonoBehaviour
 {
+    
     private void OnCollisionEnter2D (Collision2D CollidedObject)
     {
         Rigidbody2D rigidBody = CollidedObject.collider.GetComponent<Rigidbody2D>();
