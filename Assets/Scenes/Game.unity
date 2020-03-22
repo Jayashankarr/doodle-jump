@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba58e2bb7fc3db74494b36fab15cf733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPad: {fileID: 1292369962}
+  jumpPad: {fileID: 1607094956}
   greenPadSprite: {fileID: 1834559386802486852, guid: cb2dde361ebf8c14e86ca496c5bd43a1,
     type: 3}
   bluePadSprite: {fileID: 809135382761942128, guid: cb2dde361ebf8c14e86ca496c5bd43a1,
@@ -298,7 +298,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1070777306
 SpriteRenderer:
@@ -362,7 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 448d98a6b8c3058419ef61a8df5ab80b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumbPad: {fileID: 1292369962}
+  jumbPad: {fileID: 0}
   jumpPadGenerator: {fileID: 866438538}
 --- !u!1 &1210661907
 GameObject:
@@ -508,7 +508,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1210661913
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -522,13 +522,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
---- !u!1 &1292369962 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1534820118416725934, guid: 8f99171c0ccf32d4dbe01b6f57ba6457,
-    type: 3}
-  m_PrefabInstance: {fileID: 1534820119708047236}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1534820119708047236
+--- !u!1001 &1576939823
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -573,7 +567,7 @@ PrefabInstance:
     - target: {fileID: 1534820118416725929, guid: 8f99171c0ccf32d4dbe01b6f57ba6457,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1534820118416725929, guid: 8f99171c0ccf32d4dbe01b6f57ba6457,
         type: 3}
@@ -593,12 +587,12 @@ PrefabInstance:
     - target: {fileID: 1534820118416725929, guid: 8f99171c0ccf32d4dbe01b6f57ba6457,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 1534820118416725929, guid: 8f99171c0ccf32d4dbe01b6f57ba6457,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -2.7
+      value: -2.44
       objectReference: {fileID: 0}
     - target: {fileID: 1534820118416725929, guid: 8f99171c0ccf32d4dbe01b6f57ba6457,
         type: 3}
@@ -640,25 +634,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1534820118416725930, guid: 8f99171c0ccf32d4dbe01b6f57ba6457,
-        type: 3}
-      propertyPath: m_UseSideFriction
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1534820118416725930, guid: 8f99171c0ccf32d4dbe01b6f57ba6457,
-        type: 3}
-      propertyPath: m_UseSideBounce
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1534820118416725934, guid: 8f99171c0ccf32d4dbe01b6f57ba6457,
-        type: 3}
-      propertyPath: m_Name
-      value: JumpPad
-      objectReference: {fileID: 0}
-    - target: {fileID: 7873283672894620149, guid: 8f99171c0ccf32d4dbe01b6f57ba6457,
         type: 3}
       propertyPath: m_Name
       value: JumpPad
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f99171c0ccf32d4dbe01b6f57ba6457, type: 3}
+--- !u!1 &1607094956 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1534820118416725934, guid: 8f99171c0ccf32d4dbe01b6f57ba6457,
+    type: 3}
+  m_PrefabInstance: {fileID: 1576939823}
+  m_PrefabAsset: {fileID: 0}
