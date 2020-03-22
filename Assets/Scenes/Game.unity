@@ -160,6 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e9071338e572b4b8d0ca60d1de2098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 1210661908}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -520,6 +521,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9595ea440591e76408b00ba30f8b1053, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementSpeed: 10
 --- !u!1 &1292369962 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1534820118416725934, guid: 8f99171c0ccf32d4dbe01b6f57ba6457,
@@ -638,7 +640,22 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1534820118416725930, guid: 8f99171c0ccf32d4dbe01b6f57ba6457,
+        type: 3}
+      propertyPath: m_UseSideFriction
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1534820118416725930, guid: 8f99171c0ccf32d4dbe01b6f57ba6457,
+        type: 3}
+      propertyPath: m_UseSideBounce
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1534820118416725934, guid: 8f99171c0ccf32d4dbe01b6f57ba6457,
+        type: 3}
+      propertyPath: m_Name
+      value: JumpPad
+      objectReference: {fileID: 0}
+    - target: {fileID: 7873283672894620149, guid: 8f99171c0ccf32d4dbe01b6f57ba6457,
         type: 3}
       propertyPath: m_Name
       value: JumpPad
