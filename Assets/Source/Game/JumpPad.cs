@@ -73,4 +73,23 @@ public class JumpPad : MonoBehaviour
     {
         spring.SetActive (value);
     }
+
+    private void Update ()
+    {
+        if (GameController.Instance.CheckIfPadIsReadyToDestroy (transform.position))
+        {
+            gameObject.SetActive (false);
+            Destroy(gameObject);
+        }
+    }
+
+    void OnBecameVisible()
+    {
+        enabled = true;
+    }
+
+    void OnBecameInvisible()
+    {
+        enabled = false;
+    }
 }

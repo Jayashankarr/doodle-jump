@@ -439,8 +439,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 448d98a6b8c3058419ef61a8df5ab80b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumbPad: {fileID: 0}
   jumpPadGenerator: {fileID: 866438538}
+  jumpPadOriginTransform: {fileID: 1607094962}
 --- !u!1 &1210661907
 GameObject:
   m_ObjectHideFlags: 0
@@ -787,6 +787,12 @@ PrefabInstance:
 --- !u!1 &1607094956 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1534820118416725934, guid: 8f99171c0ccf32d4dbe01b6f57ba6457,
+    type: 3}
+  m_PrefabInstance: {fileID: 1576939823}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &1607094962 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 1534820118416725929, guid: 8f99171c0ccf32d4dbe01b6f57ba6457,
     type: 3}
   m_PrefabInstance: {fileID: 1576939823}
   m_PrefabAsset: {fileID: 0}

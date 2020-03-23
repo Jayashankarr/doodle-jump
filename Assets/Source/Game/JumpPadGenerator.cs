@@ -27,14 +27,14 @@ public class JumpPadGenerator : MonoBehaviour
 
 	}
 
-    public GameObject GenerateJumpPad ()
+    public GameObject GenerateJumpPad (Vector3 lastPadPosition)
     {
         count++;
         collectibleType = PadObjectType.NONE;
         Vector3 spawnPosition = Vector3.zero;
         int rand = Random.Range (1, 10);
         spawnPosition.x = Random.Range (-2.5f , 2.5f);
-        spawnPosition.y = Random.Range(jumpPad.transform.position.y + 0.5f,jumpPad.transform.position.y + 2f);//jumpPad.transform.position.y + 2f;
+        spawnPosition.y = Random.Range(lastPadPosition.y + 0.5f,lastPadPosition.y + 2f);//jumpPad.transform.position.y + 2f;
         
         if (count % 3 == 0)
         {
@@ -70,7 +70,7 @@ public class JumpPadGenerator : MonoBehaviour
 
         jumpPad.name = "JumpPad";
         jumpPad.GetComponent<JumpPad>().JumpPadIndex = count;
-        
+
         return jumpPad;
         
     }
