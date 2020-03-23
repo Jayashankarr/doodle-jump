@@ -28,6 +28,14 @@ public class GameController : MonoBehaviour
 
     private int score = 0;
 
+    private GameState currentState = GameState.PLAYING;
+
+    public GameState CurrentState
+    {
+        set {currentState = value;}
+        get {return currentState;}
+    }
+
     private void Awake ()
     {
         Instance = this;
@@ -92,6 +100,17 @@ public class GameController : MonoBehaviour
         Vector3 viewPortPos = Camera.main.WorldToViewportPoint (position);
 
         if (viewPortPos.y < 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool CheckIfGameOver (Vector3 position)
+    {
+        Vector3 viewPortPos = Camera.main.WorldToViewportPoint (position);
+
+        if (viewPortPos.y < 0.1f)
         {
             return true;
         }

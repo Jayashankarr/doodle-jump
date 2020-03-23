@@ -238,6 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1210661908}
+  background: {fileID: 1070777304}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0

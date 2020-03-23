@@ -18,6 +18,11 @@ public class Doodle : MonoBehaviour
 	void Update () 
     {
 		movement = Input.GetAxis("Horizontal") * movementSpeed;
+
+		if (GameController.Instance.CheckIfGameOver (transform.position))
+		{
+			GameController.Instance.CurrentState = GameState.GAME_OVER;
+		}
 	}
 
 	void FixedUpdate ()

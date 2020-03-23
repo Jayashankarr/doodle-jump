@@ -53,7 +53,7 @@ public class JumpPad : MonoBehaviour
 
                 default:
                 changeVelocityForObject (rigidBody, 10f);
-                 GameController.Instance.SaveDoodleScore (25 * jumpPadIndex);
+                GameController.Instance.SaveDoodleScore (25 * jumpPadIndex);
                 break;
             }
         }        

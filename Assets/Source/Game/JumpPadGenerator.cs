@@ -34,7 +34,7 @@ public class JumpPadGenerator : MonoBehaviour
         Vector3 spawnPosition = Vector3.zero;
         int rand = Random.Range (1, 10);
         spawnPosition.x = Random.Range (-2.5f , 2.5f);
-        spawnPosition.y = Random.Range(lastPadPosition.y + 0.5f,lastPadPosition.y + 2f);//jumpPad.transform.position.y + 2f;
+        spawnPosition.y = Random.Range(lastPadPosition.y + 0.5f,lastPadPosition.y + 2f);
         
         if (count % 3 == 0)
         {
