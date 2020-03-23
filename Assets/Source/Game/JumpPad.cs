@@ -22,6 +22,12 @@ public class JumpPad : MonoBehaviour
 
     private int jumpPadIndex = 0;
 
+    public int JumpPadIndex
+    {
+        set {jumpPadIndex = value;}
+        get {return jumpPadIndex;}
+    }
+
     private void Start ()
     {
 

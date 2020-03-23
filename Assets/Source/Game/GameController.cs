@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level : MonoBehaviour
+public class GameController : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject jumbPad;
-
     [SerializeField]
     private GameObject jumpPadGenerator;
 

@@ -69,6 +69,8 @@ public class JumpPadGenerator : MonoBehaviour
         }
 
         jumpPad.name = "JumpPad";
+        jumpPad.GetComponent<JumpPad>().JumpPadIndex = count;
+        
         return jumpPad;
         
     }
