@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Doodle : MonoBehaviour
 {
-    public float movementSpeed = 10f;
+    public float movementSpeed = 6f;
 
 	Rigidbody2D rb;
 
@@ -20,7 +20,7 @@ public class Doodle : MonoBehaviour
 		movement = Input.GetAxis("Horizontal") * movementSpeed;
 	}
 
-	void FixedUpdate()
+	void FixedUpdate ()
 	{
 		Vector2 velocity = rb.velocity;
 		velocity.x = movement;

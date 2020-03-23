@@ -18,6 +18,8 @@ public class Collectible : MonoBehaviour
             Vector2 velocity = rigidBody.velocity;
             velocity.y = 20;
             rigidBody.velocity = velocity;
+
+            GameController.Instance.SaveDoodleScore (100);
         }        
     } 
 }

@@ -47,11 +47,13 @@ public class JumpPad : MonoBehaviour
 
                 case JumpPadType.Blue:
                 changeVelocityForObject (rigidBody, 10f);
+                GameController.Instance.SaveDoodleScore (35* jumpPadIndex);
                 GameObject.Destroy (gameObject);
                 break;
 
                 default:
                 changeVelocityForObject (rigidBody, 10f);
+                 GameController.Instance.SaveDoodleScore (25 * jumpPadIndex);
                 break;
             }
         }        

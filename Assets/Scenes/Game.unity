@@ -441,6 +441,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpPadGenerator: {fileID: 866438538}
   jumpPadOriginTransform: {fileID: 1607094962}
+  scoreBoard: {fileID: 170472971}
 --- !u!1 &1210661907
 GameObject:
   m_ObjectHideFlags: 0

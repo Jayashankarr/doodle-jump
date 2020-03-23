@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class GameController : MonoBehaviour
 
     [SerializeField]
     private Transform jumpPadOriginTransform;
+
+    [SerializeField]
+    private GameObject scoreBoard;
 
     private Camera mainCamera;
 
@@ -21,6 +25,8 @@ public class GameController : MonoBehaviour
     private Coroutine createPadCoroutine = null;
 
     private Vector3 lastCratedPadPosition = Vector3.zero;
+
+    private int score = 0;
 
     private void Awake ()
     {
@@ -42,6 +48,17 @@ public class GameController : MonoBehaviour
         }
 
         createPadCoroutine = StartCoroutine (createJumpPads());
+    }
+
+    public void SaveDoodleScore (int value)
+    {
+        score += value;
+        scoreBoard.GetComponent<Text>().text = score.ToString();
+    }
+
+    public int GetDoodleScore ()
+    {
+        return score;
     }
 
     private IEnumerator createJumpPads ()
