@@ -14,6 +14,9 @@ public class GameController : MonoBehaviour
     [SerializeField]
     private GameObject scoreBoard;
 
+    [SerializeField]
+    private GameObject GameOverMenu;
+
     private Camera mainCamera;
 
     private Vector3 topLeft = Vector3.zero;
@@ -88,6 +91,8 @@ public class GameController : MonoBehaviour
         {
             createPadCoroutine = StartCoroutine (createJumpPads());
         }
+
+        transform.position = new Vector3 (transform.position.x , mainCamera.transform.position.y, transform.position.z);
     }
 
     public Vector3 GetTopLeftPosition ()
@@ -126,5 +131,10 @@ public class GameController : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void ActivateGameOverMenu ()
+    {
+        GameOverMenu.SetActive (true);
     }
 }
