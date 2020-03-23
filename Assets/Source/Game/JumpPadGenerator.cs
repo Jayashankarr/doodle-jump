@@ -33,19 +33,23 @@ public class JumpPadGenerator : MonoBehaviour
         collectibleType = PadObjectType.NONE;
         Vector3 spawnPosition = Vector3.zero;
         int rand = Random.Range (1, 10);
-        spawnPosition.x = Random.Range (-2f , 2f);
-        spawnPosition.y = jumpPad.transform.position.y + 2f;
-
-        int randomObject = Random.Range (1,12);
-        switch (randomObject)
+        spawnPosition.x = Random.Range (-2.5f , 2.5f);
+        spawnPosition.y = Random.Range(jumpPad.transform.position.y + 0.5f,jumpPad.transform.position.y + 2f);//jumpPad.transform.position.y + 2f;
+        
+        if (count % 3 == 0)
         {
-            case 3:
-                collectibleType = PadObjectType.SPRING;
-            break;
+            int randomObject = Random.Range (1,12);
+            switch (randomObject)
+            {
+                case 3:
+                    collectibleType = PadObjectType.SPRING;
+                    Debug.Log ("cOLLECTIBLE COUNT : " + count);
+                break;
 
-            case 5:
-                collectibleType = PadObjectType.ROCKET;
-            break;
+                case 5:
+                    collectibleType = PadObjectType.ROCKET;
+                break;
+            }
         }
 
         switch (rand)
@@ -68,6 +72,14 @@ public class JumpPadGenerator : MonoBehaviour
         return jumpPad;
         
     }
+
+    // public GameObject GenearteEnemy ()
+    // {
+    //     GameObject enemy;
+
+    //     return enemy;
+
+    // }
 
     private GameObject padGreen (Vector3 padPosition)
     {
