@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class GameController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject jumpPadGenerator;
+    private GameObject doodle;
+
+    [SerializeField]
+    private GameObject levelGenerator;
 
     [SerializeField]
     private Transform jumpPadOriginTransform;
-
-    [SerializeField]
-    private GameObject scoreBoard;
 
     [SerializeField]
     private GameObject GameOverMenu;
@@ -21,87 +21,70 @@ public class GameController : MonoBehaviour
 
     private Vector3 topLeft = Vector3.zero;
 
-    public static GameController Instance;
-
     private float cachedCameraY = 0f;
 
-    private Coroutine createPadCoroutine = null;
+    private Coroutine createLevelCoroutine = null;
 
-    private Vector3 lastCratedPadPosition = Vector3.zero;
+    private Vector3 lastCratedLevelPosition = Vector3.zero;
 
-    private int score = 0;
+    private int currentScore = 0;
 
-    private GameState currentState = GameState.PLAYING;
-
-    public GameState CurrentState
-    {
-        set {currentState = value;}
-        get {return currentState;}
-    }
-
-    private void Awake ()
-    {
-        Instance = this;
-    }
+    private int totalGeneratedLevels = 0;
 
     private void Start ()
     {
         mainCamera = Camera.main;
         topLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
         cachedCameraY = mainCamera.transform.position.y;
-        lastCratedPadPosition = jumpPadOriginTransform.position;
+    }
+
+    private void startController ()
+    {
+        doodle.transform.position = jumpPadOriginTransform.position;
+        lastCratedLevelPosition = jumpPadOriginTransform.position;
 
         Vector3 spawnPosition = Vector3.zero;
         for (int i =0; i < 10; i++)
         {
-            GameObject pad = jumpPadGenerator.GetComponent<JumpPadGenerator>().GenerateJumpPad(lastCratedPadPosition);
-            lastCratedPadPosition = pad.transform.position;
+            ++totalGeneratedLevels;
+            GameObject pad = levelGenerator.GetComponent<LevelGenerator>().GenerateJumpPad(lastCratedLevelPosition);
+            lastCratedLevelPosition = pad.transform.position;
         }
 
-        createPadCoroutine = StartCoroutine (createJumpPads());
-
+        createLevelCoroutine = StartCoroutine (createLevels());
 
     }
 
-    public void SaveDoodleScore (int value)
+    private IEnumerator createLevels ()
     {
-        score += value;
-        scoreBoard.GetComponent<Text>().text = score.ToString();
-    }
-
-    public int GetDoodleScore ()
-    {
-        return score;
-    }
-
-    private IEnumerator createJumpPads ()
-    {
-        if (CheckIfNewPadGenerationIsNeeded (lastCratedPadPosition))
+        if (CheckIfNewPadGenerationIsNeeded (lastCratedLevelPosition))
         {
+            ++totalGeneratedLevels;
             cachedCameraY = mainCamera.transform.position.y;
-            int rand = Random.Range (1,6);
-            GameObject pad = null;
+            int enemyRand = Random.Range (1,6);
+            GameObject level = null;
 
-            if (rand == 4)
+            if (enemyRand == 4 && totalGeneratedLevels % 3 == 0)
             {
-                pad = jumpPadGenerator.GetComponent<JumpPadGenerator>().GenearteEnemy(lastCratedPadPosition);
+                level = levelGenerator.GetComponent<LevelGenerator>().GenearteEnemy(lastCratedLevelPosition);
             }
             else
             {
-                pad = jumpPadGenerator.GetComponent<JumpPadGenerator>().GenerateJumpPad(lastCratedPadPosition);
+                level = levelGenerator.GetComponent<LevelGenerator>().GenerateJumpPad(lastCratedLevelPosition);
             }
-            lastCratedPadPosition = pad.transform.position;
+        
+            lastCratedLevelPosition = level.transform.position;
         }
-        yield return new WaitForEndOfFrame();
 
-        createPadCoroutine = null;
+        yield return new WaitForEndOfFrame();
+        createLevelCoroutine = null;
     }
 
     private void Update ()
     {
-        if (createPadCoroutine == null)
+        if (createLevelCoroutine == null)
         {
-            createPadCoroutine = StartCoroutine (createJumpPads());
+            createLevelCoroutine = StartCoroutine (createLevels());
         }
 
         transform.position = new Vector3 (transform.position.x , mainCamera.transform.position.y, transform.position.z);
@@ -120,10 +103,11 @@ public class GameController : MonoBehaviour
         {
             return true;
         }
+
         return false;
     }
 
-    public bool CheckIfGameOver (Vector3 position)
+    public bool CheckIfDoodleIsBelowgameView (Vector3 position)
     {
         Vector3 viewPortPos = Camera.main.WorldToViewportPoint (position);
 
@@ -131,6 +115,7 @@ public class GameController : MonoBehaviour
         {
             return true;
         }
+        
         return false;
     }
 
@@ -148,5 +133,11 @@ public class GameController : MonoBehaviour
     public void ActivateGameOverMenu ()
     {
         GameOverMenu.SetActive (true);
+    }
+
+    public void ResetController ()
+    {
+        startController ();
+        levelGenerator.GetComponent<LevelGenerator>().ResetGenerator ();
     }
 }

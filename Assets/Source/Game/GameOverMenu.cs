@@ -15,21 +15,9 @@ public class GameOverMenu : MonoBehaviour
     private Text playerName; 
     private void Start ()
     {
-        currentScore.text = GameController.Instance.GetDoodleScore().ToString();
+        currentScore.text = GameManager.Instance.GetPlayerCurrentScore().ToString();
 
-        highScore = PlayFabManager.Instance.GetHighScore();
-    }
-
-    void OnEnable ()
-    {
-        PlayFabManager.Instance.SetScore (GameController.Instance.GetDoodleScore());
-
-        if (PlayFabManager.Instance.GetHighScore() < GameController.Instance.GetDoodleScore())
-        {
-            PlayFabManager.Instance.SetHighScore (GameController.Instance.GetDoodleScore());
-        }
-
-        //Li
+        highScore.text = GameManager.Instance.GetPlayerHighScore().ToString();
     }
 
     public void ChangeUserName ()

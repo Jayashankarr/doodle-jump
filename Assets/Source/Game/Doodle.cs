@@ -18,17 +18,14 @@ public class Doodle : MonoBehaviour
 	void Update () 
     {
 		movement = Input.GetAxis("Horizontal") * movementSpeed;
-
-		if (GameController.Instance.CheckIfGameOver (transform.position))
-		{
-			GameController.Instance.CurrentState = GameState.GAME_OVER;
-		}
-	}
-
-	void FixedUpdate ()
-	{
 		Vector2 velocity = rb.velocity;
 		velocity.x = movement;
 		rb.velocity = velocity;
+
+		if (GameManager.Instance.GameController().
+				CheckIfDoodleIsBelowgameView (transform.position))
+		{
+			GameManager.Instance.GameOver ();
+		}
 	}
 }

@@ -47,13 +47,13 @@ public class JumpPad : MonoBehaviour
 
                 case JumpPadType.Blue:
                 changeVelocityForObject (rigidBody, 10f);
-                GameController.Instance.SaveDoodleScore (35* jumpPadIndex);
+                GameManager.Instance.SetPlayerCurrentScore (35* jumpPadIndex);
                 GameObject.Destroy (gameObject);
                 break;
 
                 default:
                 changeVelocityForObject (rigidBody, 10f);
-                GameController.Instance.SaveDoodleScore (25 * jumpPadIndex);
+                GameManager.Instance.SetPlayerCurrentScore (25 * jumpPadIndex);
                 break;
             }
         }        
@@ -78,7 +78,9 @@ public class JumpPad : MonoBehaviour
 
     private void Update ()
     {
-        if (GameController.Instance.CheckIfPadIsReadyToDestroy (transform.position) || GameController.Instance.CurrentState == GameState.GAME_OVER)
+        if (GameManager.Instance.GameController().
+                CheckIfPadIsReadyToDestroy (transform.position) || 
+                    GameManager.Instance.IsGameOver())
         {
             gameObject.SetActive (false);
             Destroy(gameObject);

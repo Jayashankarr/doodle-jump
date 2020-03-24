@@ -19,7 +19,7 @@ public class Collectible : MonoBehaviour
             velocity.y = 20;
             rigidBody.velocity = velocity;
 
-            GameController.Instance.SaveDoodleScore (100);
+            GameManager.Instance.SetPlayerCurrentScore (100);
         }        
     } 
 }

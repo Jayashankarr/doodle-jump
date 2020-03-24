@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    private Coroutine movementCoroutine = null;
-
     private EnemyType type = EnemyType.MOVING;
 
     public EnemyType Type
@@ -14,46 +12,36 @@ public class Enemy : MonoBehaviour
         set {type = value;}
     }
 
-    float offset = 0.5f;
-
     private void OnCollisionEnter2D (Collision2D CollidedObject)
     {
 
     }
-    
+
     void Update()
     {
-        if (GameController.Instance.CurrentState == GameState.GAME_OVER)
+        if (GameManager.Instance.IsGameOver ())
         {
             gameObject.SetActive (false);
             Destroy(gameObject);
         }
-        if (type == EnemyType.MOVING &&movementCoroutine == null)
+        if (type == EnemyType.MOVING)
         {
-            movementCoroutine = StartCoroutine (enemyMovement());
-        }
-        else
-        {
-
+            doEnemyMovement ();
         }
     }
 
-    private IEnumerator enemyMovement ()
+    private void doEnemyMovement ()
     {
-
+        float offset = 0f;
         if (transform.position.x < (-2))
         {
-            offset = 0.25f;
+            offset = Time.deltaTime;
         }
         else if(transform.position.x > (2))
         {
-            offset = -0.25f;
+            offset = -Time.deltaTime;
         }
-
         transform.position = new Vector3 (transform.position.x + offset, transform.position.y, transform.position.z);
-        yield return new WaitForSeconds(0.1f); 
-
-        movementCoroutine = null;
     }
 
 }

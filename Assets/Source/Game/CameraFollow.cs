@@ -13,12 +13,12 @@ public class CameraFollow : MonoBehaviour
 
 	void LateUpdate () 
     {
-		if ((target.position.y > transform.position.y) && (GameController.Instance.CurrentState != GameState.GAME_OVER))
+		if ((target.position.y > transform.position.y) && !(GameManager.Instance.IsGameOver()))
 		{
 			Vector3 newPos = new Vector3(transform.position.x, target.position.y, transform.position.z);
 			transform.position = newPos;
 		}
-		else if (GameController.Instance.CurrentState == GameState.GAME_OVER)
+		else if (GameManager.Instance.IsGameOver())
 		{
 			if (timeDown < 3f)
 			{
@@ -27,7 +27,7 @@ public class CameraFollow : MonoBehaviour
 			}
 			else
 			{
-				GameController.Instance.ActivateGameOverMenu ();
+				GameManager.Instance.OnCameraPanningComplete ();
 			}
 		}
 	}

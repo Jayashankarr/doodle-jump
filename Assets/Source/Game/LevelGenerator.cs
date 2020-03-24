@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpPadGenerator : MonoBehaviour
+public class LevelGenerator : MonoBehaviour
 {
     [SerializeField]
     private GameObject jumpPad;
@@ -23,8 +23,6 @@ public class JumpPadGenerator : MonoBehaviour
     private GameObject monster_2;
 
     private PadObjectType collectibleType = PadObjectType.NONE;
-
-    private float currentY = 0.2f;
 
     private int count = 0;
 
@@ -149,5 +147,10 @@ public class JumpPadGenerator : MonoBehaviour
         padBlue.GetComponent<JumpPad>().Type = JumpPadType.Blue;
 
         return padBlue;
+    }
+
+    public void ResetGenerator ()
+    {
+        count = 0;
     }
 }
