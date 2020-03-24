@@ -45,15 +45,22 @@ public class GameController : MonoBehaviour
         lastCreatedLevelPosition = jumpPadOriginTransform.position;
 
         Vector3 spawnPosition = Vector3.zero;
-        for (int i =0; i < 10; i++)
-        {
-            ++totalGeneratedLevels;
-            GameObject pad = levelGenerator.GetComponent<LevelSpawner>().GenerateJumpPad(lastCreatedLevelPosition);
-            lastCreatedLevelPosition = pad.transform.position;
-        }
 
-        createLevelCoroutine = StartCoroutine (createLevels());
+        GameObject level = levelGenerator.GetComponent<LevelSpawner>().GenearteEnemy(lastCreatedLevelPosition);
+        // for (int i =0; i < 10; i++)
+        // {
+        //     ++totalGeneratedLevels;
+        //     GameObject pad = levelGenerator.GetComponent<LevelSpawner>().GenerateJumpPad(lastCreatedLevelPosition);
+        //     lastCreatedLevelPosition = pad.transform.position;
+        // }
 
+        //createLevelCoroutine = StartCoroutine (createLevels());
+
+    }
+
+    public Vector2 DoodlePosition ()
+    {
+        return doodle.transform.position;
     }
 
     private IEnumerator createLevels ()
@@ -85,7 +92,7 @@ public class GameController : MonoBehaviour
     {
         if (createLevelCoroutine == null && GameManager.Instance.IsGamePlaying())
         {
-            createLevelCoroutine = StartCoroutine (createLevels());
+            //createLevelCoroutine = StartCoroutine (createLevels());
         }
     }
 

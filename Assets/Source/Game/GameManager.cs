@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,6 +22,9 @@ public class GameManager : MonoBehaviour
     private GameObject gameCanvas = null;
 
     [SerializeField]
+    private Text playerName = null;
+
+    [SerializeField]
     private Text hudScoreText = null; 
 
     private GameState gameState = GameState.IDLE; 
@@ -30,6 +34,8 @@ public class GameManager : MonoBehaviour
     private PlayFabManager dataManager = null;
 
     private int playerCurretScore = 0;
+
+    private int playerHighScore = 0;
 
     private GameController controller = null;
     
@@ -58,7 +64,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdatePlayerName (string name)
     {
-        dataManager.UpdateName (name);
+        //dataManager.UpdateName (name);
     }
 
     public void GameOver ()
@@ -132,7 +138,7 @@ public class GameManager : MonoBehaviour
 
     public int GetPlayerHighScore ()
     {
-        return dataManager.GetHighScore ();
+        return PlayerPrefs.GetInt ("HighScore");
     }
 
     public void SavePlayerHighScore ()
@@ -140,6 +146,8 @@ public class GameManager : MonoBehaviour
         if (GetPlayerHighScore () < playerCurretScore)
         {
             dataManager.SetHighScore (playerCurretScore);
+
+            playerHighScore = playerCurretScore;
         }
     }
 }

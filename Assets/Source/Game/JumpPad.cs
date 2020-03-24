@@ -72,7 +72,7 @@ public class JumpPad : MonoBehaviour
     {
         Vector2 velocity = rigidBody.velocity;
         velocity.y = offset;
-        rigidBody.velocity = velocity;
+        //rigidBody.velocity = velocity;
     }
 
     public void SetRocket (bool value)

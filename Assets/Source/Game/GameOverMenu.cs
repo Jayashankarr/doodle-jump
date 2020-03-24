@@ -22,6 +22,6 @@ public class GameOverMenu : MonoBehaviour
 
     public void ChangeUserName ()
     {
-        PlayFabManager.Instance.UpdateName (playerName.text);
+        //PlayFabManager.Instance.UpdateName (playerName.text);
     }
 }

@@ -85,21 +85,24 @@ public class LevelSpawner : MonoBehaviour
         GameObject enemy = null;
         Vector3 spawnPosition = Vector3.zero;
         spawnPosition.x = Random.Range (-2.5f , 2.5f);
-        spawnPosition.y = Random.Range(lastPadPosition.y + 0.5f,lastPadPosition.y + 3f);
+        spawnPosition.y = Random.Range(lastPadPosition.y + 5f,lastPadPosition.y + 6f);
         int rand = Random.Range (1,2);
 
-        switch(rand)
-        {
-            case 1:
-            enemy = Instantiate (monster_1, spawnPosition, Quaternion.identity);
-            enemy.GetComponent<Enemy>().Type = EnemyType.MOVING;
-            break;
+        // switch(rand)
+        // {
+        //     case 1:
+        //     enemy = Instantiate (monster_1, spawnPosition, Quaternion.identity);
+        //     enemy.GetComponent<Enemy>().Type = EnemyType.MOVING;
+        //     break;
 
-            case 2:
-            enemy = Instantiate (monster_2, spawnPosition, Quaternion.identity);
-            enemy.GetComponent<Enemy>().Type = EnemyType.SHOOTING;
-            break;
-        }
+        //     case 2:
+        //     enemy = Instantiate (monster_2, spawnPosition, Quaternion.identity);
+        //     enemy.GetComponent<Enemy>().Type = EnemyType.SHOOTING;
+        //     break;
+        // }
+
+        enemy = Instantiate (monster_2, spawnPosition, Quaternion.identity);
+        enemy.GetComponent<Enemy>().Type = EnemyType.SHOOTING;
 
         return enemy;
 

@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject bullet;
     private EnemyType type = EnemyType.MOVING;
+
+    private float moveOffset = 0.015f;
+
+    private Coroutine shootCoroutine = null;
 
     public EnemyType Type
     {
@@ -14,7 +20,7 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter2D (Collision2D CollidedObject)
     {
-
+        GameManager.Instance.GameOver ();
     }
 
     void Update()
@@ -28,20 +34,38 @@ public class Enemy : MonoBehaviour
         {
             doEnemyMovement ();
         }
+
+        if (type == EnemyType.SHOOTING)
+        {
+            if (shootCoroutine == null )
+            shootCoroutine = StartCoroutine (shoot());
+        }
+    }
+
+    private IEnumerator shoot ()
+    {
+        GameObject obj = Instantiate (bullet, transform.position, Quaternion.identity, transform);
+        //obj.transform.parent = gameObject.transform;
+        //obj.transform.position = Vector3.zero;
+
+        yield return new WaitForSeconds (2f);
+
+        shootCoroutine = null;
+
+
     }
 
     private void doEnemyMovement ()
     {
-        float offset = 0f;
-        if (transform.position.x < (-2))
+        if (transform.position.x < -2f)
         {
-            offset = Time.deltaTime;
+            moveOffset *= -1;
         }
-        else if(transform.position.x > (2))
+        else if(transform.position.x > 2f)
         {
-            offset = -Time.deltaTime;
+            moveOffset *= -1;
         }
-        transform.position = new Vector3 (transform.position.x + offset, transform.position.y, transform.position.z);
+        transform.position = new Vector3 (transform.position.x + moveOffset, transform.position.y, transform.position.z);
     }
 
 }

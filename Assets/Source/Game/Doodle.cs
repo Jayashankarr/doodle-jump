@@ -30,7 +30,7 @@ public class Doodle : MonoBehaviour
 		{
 			GameManager.Instance.GameOver ();
 		}
-		
+
 		doodleWarp ();
 	}
 
