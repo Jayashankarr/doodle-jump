@@ -650,6 +650,10 @@ MonoBehaviour:
     type: 3}
   brownPadSprite: {fileID: -2045991947671220319, guid: cb2dde361ebf8c14e86ca496c5bd43a1,
     type: 3}
+  monster_1: {fileID: 3653746283959981898, guid: 01f91c71227e0544e9586f3d4cd79b71,
+    type: 3}
+  monster_2: {fileID: 1083797931428022089, guid: cfc10aa131a29f54a89cf085985d77ae,
+    type: 3}
 --- !u!4 &866438540
 Transform:
   m_ObjectHideFlags: 0
