@@ -59,6 +59,8 @@ public class GameController : MonoBehaviour
         }
 
         createPadCoroutine = StartCoroutine (createJumpPads());
+
+
     }
 
     public void SaveDoodleScore (int value)
@@ -77,7 +79,17 @@ public class GameController : MonoBehaviour
         if (CheckIfNewPadGenerationIsNeeded (lastCratedPadPosition))
         {
             cachedCameraY = mainCamera.transform.position.y;
-            GameObject pad = jumpPadGenerator.GetComponent<JumpPadGenerator>().GenerateJumpPad(lastCratedPadPosition);
+            int rand = Random.Range (1,6);
+            GameObject pad = null;
+
+            if (rand == 4)
+            {
+                pad = jumpPadGenerator.GetComponent<JumpPadGenerator>().GenearteEnemy(lastCratedPadPosition);
+            }
+            else
+            {
+                pad = jumpPadGenerator.GetComponent<JumpPadGenerator>().GenerateJumpPad(lastCratedPadPosition);
+            }
             lastCratedPadPosition = pad.transform.position;
         }
         yield return new WaitForEndOfFrame();

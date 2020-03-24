@@ -78,7 +78,7 @@ public class JumpPad : MonoBehaviour
 
     private void Update ()
     {
-        if (GameController.Instance.CheckIfPadIsReadyToDestroy (transform.position))
+        if (GameController.Instance.CheckIfPadIsReadyToDestroy (transform.position) || GameController.Instance.CurrentState == GameState.GAME_OVER)
         {
             gameObject.SetActive (false);
             Destroy(gameObject);

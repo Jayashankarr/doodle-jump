@@ -16,6 +16,12 @@ public class JumpPadGenerator : MonoBehaviour
     [SerializeField]
     private Sprite brownPadSprite;
 
+    [SerializeField]
+    private GameObject monster_1;
+
+    [SerializeField]
+    private GameObject monster_2;
+
     private PadObjectType collectibleType = PadObjectType.NONE;
 
     private float currentY = 0.2f;
@@ -75,13 +81,30 @@ public class JumpPadGenerator : MonoBehaviour
         
     }
 
-    // public GameObject GenearteEnemy ()
-    // {
-    //     GameObject enemy;
+    public GameObject GenearteEnemy (Vector3 lastPadPosition)
+    {
+        GameObject enemy = null;
+        Vector3 spawnPosition = Vector3.zero;
+        spawnPosition.x = Random.Range (-2.5f , 2.5f);
+        spawnPosition.y = Random.Range(lastPadPosition.y + 0.5f,lastPadPosition.y + 2f);
+        int rand = Random.Range (1,2);
 
-    //     return enemy;
+        switch(rand)
+        {
+            case 1:
+            enemy = Instantiate (monster_1, spawnPosition, Quaternion.identity);
+            enemy.GetComponent<Enemy>().Type = EnemyType.MOVING;
+            break;
 
-    // }
+            case 2:
+            enemy = Instantiate (monster_2, spawnPosition, Quaternion.identity);
+            enemy.GetComponent<Enemy>().Type = EnemyType.SHOOTING;
+            break;
+        }
+
+        return enemy;
+
+    }
 
     private GameObject padGreen (Vector3 padPosition)
     {
