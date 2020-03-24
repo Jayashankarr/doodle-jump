@@ -18,9 +18,12 @@ public class GameManager : MonoBehaviour
     private GameObject gameOverMenu = null;
 
     [SerializeField]
-    private GameObject scoreBoard = null; 
+    private GameObject gameCanvas = null;
 
-    private GameState gameState = GameState.PLAYING; 
+    [SerializeField]
+    private Text hudScoreText = null; 
+
+    private GameState gameState = GameState.IDLE; 
 
     public static GameManager Instance = null;
 
@@ -49,6 +52,8 @@ public class GameManager : MonoBehaviour
     {
         startScreen.SetActive (false);
         gameController.SetActive (true);
+        controller.StartController ();
+        gameState = GameState.PLAYING;
     }
 
     public void UpdatePlayerName (string name)
@@ -67,6 +72,16 @@ public class GameManager : MonoBehaviour
         showGameOverMenu ();
     }
 
+    public bool IsGamePlaying ()
+    {
+        if (gameState == GameState.PLAYING)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     public bool IsGameOver ()
     {
         if (gameState == GameState.GAME_OVER)
@@ -74,6 +89,15 @@ public class GameManager : MonoBehaviour
             return true;
         }
 
+        return false;
+    }
+
+    public bool IsGameIdle ()
+    {
+        if (gameState == GameState.IDLE)
+        {
+            return true;
+        }
         return false;
     }
 
@@ -87,12 +111,18 @@ public class GameManager : MonoBehaviour
         gameState = GameState.PLAYING;
         gameOverMenu.SetActive (false);
         playerCurretScore = 0;
+        controller.ResetController ();
     }
 
     public void SetPlayerCurrentScore (int scoreOffset)
     {
         playerCurretScore += scoreOffset;
-        scoreBoard.GetComponent<Text>().text = playerCurretScore.ToString();
+        UpdateHud ();
+    }
+
+    private void UpdateHud ()
+    {
+        hudScoreText.text = playerCurretScore.ToString();
     }
 
     public int GetPlayerCurrentScore ()

@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class LevelGenerator : MonoBehaviour
+public class LevelSpawner : MonoBehaviour
 {
     [SerializeField]
     private GameObject jumpPad;
@@ -47,7 +48,6 @@ public class LevelGenerator : MonoBehaviour
             {
                 case 3:
                     collectibleType = PadObjectType.SPRING;
-                    Debug.Log ("cOLLECTIBLE COUNT : " + count);
                 break;
 
                 case 5:
@@ -74,6 +74,7 @@ public class LevelGenerator : MonoBehaviour
 
         jumpPad.name = "JumpPad";
         jumpPad.GetComponent<JumpPad>().JumpPadIndex = count;
+        jumpPad.SetActive (true);
 
         return jumpPad;
         

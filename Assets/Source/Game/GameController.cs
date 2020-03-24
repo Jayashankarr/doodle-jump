@@ -25,7 +25,7 @@ public class GameController : MonoBehaviour
 
     private Coroutine createLevelCoroutine = null;
 
-    private Vector3 lastCratedLevelPosition = Vector3.zero;
+    private Vector3 lastCreatedLevelPosition = Vector3.zero;
 
     private int currentScore = 0;
 
@@ -38,17 +38,18 @@ public class GameController : MonoBehaviour
         cachedCameraY = mainCamera.transform.position.y;
     }
 
-    private void startController ()
+    public void StartController ()
     {
+        doodle.SetActive (true);
         doodle.transform.position = jumpPadOriginTransform.position;
-        lastCratedLevelPosition = jumpPadOriginTransform.position;
+        lastCreatedLevelPosition = jumpPadOriginTransform.position;
 
         Vector3 spawnPosition = Vector3.zero;
         for (int i =0; i < 10; i++)
         {
             ++totalGeneratedLevels;
-            GameObject pad = levelGenerator.GetComponent<LevelGenerator>().GenerateJumpPad(lastCratedLevelPosition);
-            lastCratedLevelPosition = pad.transform.position;
+            GameObject pad = levelGenerator.GetComponent<LevelSpawner>().GenerateJumpPad(lastCreatedLevelPosition);
+            lastCreatedLevelPosition = pad.transform.position;
         }
 
         createLevelCoroutine = StartCoroutine (createLevels());
@@ -57,23 +58,23 @@ public class GameController : MonoBehaviour
 
     private IEnumerator createLevels ()
     {
-        if (CheckIfNewPadGenerationIsNeeded (lastCratedLevelPosition))
+        if (CheckIfNewPadGenerationIsNeeded (lastCreatedLevelPosition))
         {
             ++totalGeneratedLevels;
             cachedCameraY = mainCamera.transform.position.y;
             int enemyRand = Random.Range (1,6);
             GameObject level = null;
 
-            if (enemyRand == 4 && totalGeneratedLevels % 3 == 0)
+            if (enemyRand == 4 && totalGeneratedLevels % 9 == 0)
             {
-                level = levelGenerator.GetComponent<LevelGenerator>().GenearteEnemy(lastCratedLevelPosition);
+                level = levelGenerator.GetComponent<LevelSpawner>().GenearteEnemy(lastCreatedLevelPosition);
             }
             else
             {
-                level = levelGenerator.GetComponent<LevelGenerator>().GenerateJumpPad(lastCratedLevelPosition);
+                level = levelGenerator.GetComponent<LevelSpawner>().GenerateJumpPad(lastCreatedLevelPosition);
             }
         
-            lastCratedLevelPosition = level.transform.position;
+            lastCreatedLevelPosition = level.transform.position;
         }
 
         yield return new WaitForEndOfFrame();
@@ -82,12 +83,10 @@ public class GameController : MonoBehaviour
 
     private void Update ()
     {
-        if (createLevelCoroutine == null)
+        if (createLevelCoroutine == null && GameManager.Instance.IsGamePlaying())
         {
             createLevelCoroutine = StartCoroutine (createLevels());
         }
-
-        transform.position = new Vector3 (transform.position.x , mainCamera.transform.position.y, transform.position.z);
     }
 
     public Vector3 GetTopLeftPosition ()
@@ -111,7 +110,9 @@ public class GameController : MonoBehaviour
     {
         Vector3 viewPortPos = Camera.main.WorldToViewportPoint (position);
 
-        if (viewPortPos.y < 0.1f)
+        Debug.Log ("Doodle pos :" + viewPortPos.y);
+
+        if (viewPortPos.y < 0f)
         {
             return true;
         }
@@ -137,7 +138,8 @@ public class GameController : MonoBehaviour
 
     public void ResetController ()
     {
-        startController ();
-        levelGenerator.GetComponent<LevelGenerator>().ResetGenerator ();
+        StartController ();
+        levelGenerator.GetComponent<LevelSpawner>().ResetGenerator ();
+        doodle.SetActive (true);
     }
 }

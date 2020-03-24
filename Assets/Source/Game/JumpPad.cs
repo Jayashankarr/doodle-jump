@@ -10,6 +10,15 @@ public class JumpPad : MonoBehaviour
     [SerializeField]
     private GameObject rocket = null;
 
+    [SerializeField]
+    private float greenPadJumpVelocity = 10f;
+
+    [SerializeField]
+    private float bluePadJumpVelocity = 10f;
+
+    [SerializeField]
+    private float brownPadJumpVelocity = 2f;
+
     private JumpPadType type = JumpPadType.Green;
 
     public JumpPadType Type
@@ -41,18 +50,18 @@ public class JumpPad : MonoBehaviour
             switch (type)
             {
                 case JumpPadType.Brown:
-                changeVelocityForObject (rigidBody, 0f);
+                changeVelocityForObject (rigidBody, brownPadJumpVelocity);
                 GameObject.Destroy (gameObject);
                 break;
 
                 case JumpPadType.Blue:
-                changeVelocityForObject (rigidBody, 10f);
+                changeVelocityForObject (rigidBody, bluePadJumpVelocity);
                 GameManager.Instance.SetPlayerCurrentScore (35* jumpPadIndex);
                 GameObject.Destroy (gameObject);
                 break;
 
                 default:
-                changeVelocityForObject (rigidBody, 10f);
+                changeVelocityForObject (rigidBody, greenPadJumpVelocity);
                 GameManager.Instance.SetPlayerCurrentScore (25 * jumpPadIndex);
                 break;
             }
