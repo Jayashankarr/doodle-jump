@@ -37,7 +37,7 @@ public class LevelSpawner : MonoBehaviour
         count++;
         collectibleType = PadObjectType.NONE;
         Vector3 spawnPosition = Vector3.zero;
-        int rand = Random.Range (1, 10);
+        int randCollectible = Random.Range (1, 10);
         spawnPosition.x = Random.Range (-2.5f , 2.5f);
         spawnPosition.y = Random.Range(lastPadPosition.y + 0.5f,lastPadPosition.y + 2f);
         
@@ -56,7 +56,7 @@ public class LevelSpawner : MonoBehaviour
             }
         }
 
-        switch (rand)
+        switch (randCollectible)
         {
             case 3:
             jumpPad = padBrown (spawnPosition);
@@ -85,7 +85,7 @@ public class LevelSpawner : MonoBehaviour
         GameObject enemy = null;
         Vector3 spawnPosition = Vector3.zero;
         spawnPosition.x = Random.Range (-2.5f , 2.5f);
-        spawnPosition.y = Random.Range(lastPadPosition.y + 0.5f,lastPadPosition.y + 2f);
+        spawnPosition.y = Random.Range(lastPadPosition.y + 0.5f,lastPadPosition.y + 3f);
         int rand = Random.Range (1,2);
 
         switch(rand)

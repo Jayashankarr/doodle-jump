@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private CollectibleType type = CollectibleType.SPRING;
 
+    public CollectibleType Type
+    {
+        set {type = value;}
+        get {return type;}
+    }
     private void OnCollisionEnter2D (Collision2D CollidedObject)
     {
         if (CollidedObject.relativeVelocity.y <= 0)
