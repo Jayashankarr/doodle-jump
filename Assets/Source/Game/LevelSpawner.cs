@@ -27,6 +27,8 @@ public class LevelSpawner : MonoBehaviour
 
     private int count = 0;
 
+    private GameObject level;
+
     void Start () 
     {
 
@@ -34,6 +36,7 @@ public class LevelSpawner : MonoBehaviour
 
     public GameObject GenerateJumpPad (Vector3 lastPadPosition)
     {
+        level = jumpPad;
         count++;
         collectibleType = PadObjectType.NONE;
         Vector3 spawnPosition = Vector3.zero;
@@ -59,24 +62,24 @@ public class LevelSpawner : MonoBehaviour
         switch (randCollectible)
         {
             case 3:
-            jumpPad = padBrown (spawnPosition);
+            level = padBrown (spawnPosition);
             break;
 
             case 7:
-            jumpPad = padBlue (spawnPosition);
+            level = padBlue (spawnPosition);
             break;
 
             default:
-            jumpPad = padGreen (spawnPosition);
+            level = padGreen (spawnPosition);
             break;
 
         }
 
-        jumpPad.name = "JumpPad";
-        jumpPad.GetComponent<JumpPad>().JumpPadIndex = count;
-        jumpPad.SetActive (true);
+        level.name = "JumpPad";
+        level.GetComponent<JumpPad>().JumpPadIndex = count;
+        level.SetActive (true);
 
-        return jumpPad;
+        return level;
         
     }
 
@@ -85,24 +88,21 @@ public class LevelSpawner : MonoBehaviour
         GameObject enemy = null;
         Vector3 spawnPosition = Vector3.zero;
         spawnPosition.x = Random.Range (-2.5f , 2.5f);
-        spawnPosition.y = Random.Range(lastPadPosition.y + 5f,lastPadPosition.y + 6f);
+        spawnPosition.y = Random.Range(lastPadPosition.y + 2f,lastPadPosition.y + 3f);
         int rand = Random.Range (1,2);
 
-        // switch(rand)
-        // {
-        //     case 1:
-        //     enemy = Instantiate (monster_1, spawnPosition, Quaternion.identity);
-        //     enemy.GetComponent<Enemy>().Type = EnemyType.MOVING;
-        //     break;
+        switch(rand)
+        {
+            case 1:
+            enemy = Instantiate (monster_1, spawnPosition, Quaternion.identity);
+            enemy.GetComponent<Enemy>().Type = EnemyType.MOVING;
+            break;
 
-        //     case 2:
-        //     enemy = Instantiate (monster_2, spawnPosition, Quaternion.identity);
-        //     enemy.GetComponent<Enemy>().Type = EnemyType.SHOOTING;
-        //     break;
-        // }
-
-        enemy = Instantiate (monster_2, spawnPosition, Quaternion.identity);
-        enemy.GetComponent<Enemy>().Type = EnemyType.SHOOTING;
+            case 2:
+            enemy = Instantiate (monster_2, spawnPosition, Quaternion.identity);
+            enemy.GetComponent<Enemy>().Type = EnemyType.SHOOTING;
+            break;
+        }
 
         return enemy;
 
@@ -110,7 +110,7 @@ public class LevelSpawner : MonoBehaviour
 
     private GameObject padGreen (Vector3 padPosition)
     {
-        GameObject padGreen = Instantiate (jumpPad, padPosition, Quaternion.identity);
+        GameObject padGreen = Instantiate (level, padPosition, Quaternion.identity);
 
         padGreen.GetComponent<SpriteRenderer>().sprite = greenPadSprite;
         padGreen.GetComponent<JumpPad>().Type = JumpPadType.Green;
@@ -137,7 +137,7 @@ public class LevelSpawner : MonoBehaviour
 
     private GameObject padBrown (Vector3 padPosition)
     {
-        GameObject padBrown = Instantiate (jumpPad, padPosition, Quaternion.identity);
+        GameObject padBrown = Instantiate (level, padPosition, Quaternion.identity);
         padBrown.GetComponent<SpriteRenderer>().sprite = brownPadSprite;
         padBrown.GetComponent<JumpPad>().Type = JumpPadType.Brown;
 
@@ -146,7 +146,7 @@ public class LevelSpawner : MonoBehaviour
 
     private GameObject padBlue (Vector3 padPosition)
     {
-        GameObject padBlue = Instantiate (jumpPad, padPosition, Quaternion.identity);
+        GameObject padBlue = Instantiate (level, padPosition, Quaternion.identity);
         padBlue.GetComponent<SpriteRenderer>().sprite = bluePadSprite;
         padBlue.GetComponent<JumpPad>().Type = JumpPadType.Blue;
 

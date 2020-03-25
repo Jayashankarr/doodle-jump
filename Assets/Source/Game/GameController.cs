@@ -12,9 +12,6 @@ public class GameController : MonoBehaviour
     private GameObject levelGenerator;
 
     [SerializeField]
-    private Transform jumpPadOriginTransform;
-
-    [SerializeField]
     private GameObject GameOverMenu;
 
     private Camera mainCamera;
@@ -40,21 +37,19 @@ public class GameController : MonoBehaviour
 
     public void StartController ()
     {
+        Vector3 startPos = Camera.main.ViewportToWorldPoint (new Vector3 (0,0,0));   
         doodle.SetActive (true);
-        doodle.transform.position = jumpPadOriginTransform.position;
-        lastCreatedLevelPosition = jumpPadOriginTransform.position;
-
+        lastCreatedLevelPosition = startPos;
         Vector3 spawnPosition = Vector3.zero;
 
-        GameObject level = levelGenerator.GetComponent<LevelSpawner>().GenearteEnemy(lastCreatedLevelPosition);
-        // for (int i =0; i < 10; i++)
-        // {
-        //     ++totalGeneratedLevels;
-        //     GameObject pad = levelGenerator.GetComponent<LevelSpawner>().GenerateJumpPad(lastCreatedLevelPosition);
-        //     lastCreatedLevelPosition = pad.transform.position;
-        // }
+        for (int i =0; i < 10; i++)
+        {
+            ++totalGeneratedLevels;
+            GameObject pad = levelGenerator.GetComponent<LevelSpawner>().GenerateJumpPad(lastCreatedLevelPosition);
+            lastCreatedLevelPosition = pad.transform.position;
+        }
 
-        //createLevelCoroutine = StartCoroutine (createLevels());
+        createLevelCoroutine = StartCoroutine (createLevels());
 
     }
 
@@ -92,7 +87,7 @@ public class GameController : MonoBehaviour
     {
         if (createLevelCoroutine == null && GameManager.Instance.IsGamePlaying())
         {
-            //createLevelCoroutine = StartCoroutine (createLevels());
+            createLevelCoroutine = StartCoroutine (createLevels());
         }
     }
 

@@ -18,6 +18,11 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject gameOverMenu = null;
 
+
+    [SerializeField]
+    private GameObject hud = null;
+
+
     [SerializeField]
     private GameObject gameCanvas = null;
 

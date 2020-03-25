@@ -21,6 +21,8 @@ public class Enemy : MonoBehaviour
     private void OnCollisionEnter2D (Collision2D CollidedObject)
     {
         GameManager.Instance.GameOver ();
+        gameObject.SetActive (false);
+        Destroy(gameObject);
     }
 
     void Update()
@@ -44,15 +46,11 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator shoot ()
     {
-        GameObject obj = Instantiate (bullet, transform.position, Quaternion.identity, transform);
-        //obj.transform.parent = gameObject.transform;
-        //obj.transform.position = Vector3.zero;
+        Instantiate (bullet, transform.position, Quaternion.identity, transform);
 
         yield return new WaitForSeconds (2f);
 
         shootCoroutine = null;
-
-
     }
 
     private void doEnemyMovement ()
