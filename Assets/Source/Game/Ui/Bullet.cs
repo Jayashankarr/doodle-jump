@@ -50,5 +50,20 @@ namespace doodle.UI
             }
             return false;
         }
+
+        private void OnCollisionEnter2D (Collision2D CollidedObject)
+        {
+            //if (CollidedObject.relativeVelocity.y <= 0)
+            // {
+            //     Rigidbody2D rigidBody = CollidedObject.collider.GetComponent<Rigidbody2D>();
+            //     Vector2 velocity = rigidBody.velocity;
+            //     velocity.y = 20;
+            //     rigidBody.velocity = velocity;
+
+            //     GameManager.Instance.SetPlayerCurrentScore (100);
+            // }        
+
+            GameManager.Instance.GameOver();
+        } 
     }
 }

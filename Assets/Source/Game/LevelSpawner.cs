@@ -92,19 +92,19 @@ namespace doodle
             Vector3 spawnPosition = Vector3.zero;
             spawnPosition.x = Random.Range (-2.5f , 2.5f);
             spawnPosition.y = Random.Range(lastPadPosition.y + 2f,lastPadPosition.y + 3f);
-            int rand = Random.Range (1,2);
+            int rand = Random.Range (1,3);
 
             switch(rand)
             {
-                case 1:
-                enemy = Instantiate (monster_1, spawnPosition, Quaternion.identity);
-                enemy.GetComponent<Enemy>().Type = EnemyType.MOVING;
-                break;
-
-                case 2:
+                default:
                 enemy = Instantiate (monster_2, spawnPosition, Quaternion.identity);
                 enemy.GetComponent<Enemy>().Type = EnemyType.SHOOTING;
                 break;
+
+                // default:
+                // enemy = Instantiate (monster_1, spawnPosition, Quaternion.identity);
+                // enemy.GetComponent<Enemy>().Type = EnemyType.MOVING;
+                // break;
             }
 
             return enemy;

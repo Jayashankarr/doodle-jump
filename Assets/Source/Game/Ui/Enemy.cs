@@ -49,9 +49,8 @@ namespace doodle.UI
 
         private IEnumerator shoot ()
         {
+            yield return new WaitForSeconds (1f);
             Instantiate (bullet, transform.position, Quaternion.identity, transform);
-
-            yield return new WaitForSeconds (2f);
 
             shootCoroutine = null;
         }
