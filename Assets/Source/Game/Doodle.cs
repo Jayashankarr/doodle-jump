@@ -48,4 +48,9 @@ public class Doodle : MonoBehaviour
             transform.position = new Vector3(-topLeft.x + Offset, transform.position.y, transform.position.z);
 		}
 	}
+
+	private void OnEnable ()
+	{
+		transform.position = new Vector3 (transform.position.x, Camera.main.transform.position.y, transform.position.z);
+	}
 }

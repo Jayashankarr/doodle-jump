@@ -140,6 +140,7 @@ public class GameController : MonoBehaviour
 
     public void ResetController ()
     {
+        doodle.SetActive (false);
         levelGenerator.GetComponent<LevelSpawner>().ResetGenerator ();
         StartController ();
     }

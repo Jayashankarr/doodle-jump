@@ -14,7 +14,6 @@ public class Hud : MonoBehaviour
     private void Start ()
     {
         scoreText.text = "0";
-        //playerName.text = "Player";
     }
 
     public void UpdateName (string name)

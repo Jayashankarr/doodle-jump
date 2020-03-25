@@ -84,11 +84,14 @@ public class GameManager : MonoBehaviour
     {
         gameState = GameState.GAME_OVER;
         GameManager.Instance.SavePlayerHighScore ();
+        playerCurretScore = 0;
+        UpdateHud ();
     }
 
     public void OnCameraPanningComplete ()
     {
         showGameOverMenu ();
+        gameState = GameState.IDLE;
     }
 
     public bool IsGamePlaying ()

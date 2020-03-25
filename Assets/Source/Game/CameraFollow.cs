@@ -30,6 +30,7 @@ public class CameraFollow : MonoBehaviour
 				else
 				{
 					GameManager.Instance.OnCameraPanningComplete ();
+					target.gameObject.SetActive (false);
 				}
 			}
 		}
