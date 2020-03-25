@@ -84,8 +84,6 @@ public class GameManager : MonoBehaviour
     {
         gameState = GameState.GAME_OVER;
         GameManager.Instance.SavePlayerHighScore ();
-        playerCurretScore = 0;
-        UpdateHud ();
     }
 
     public void OnCameraPanningComplete ()
@@ -130,9 +128,10 @@ public class GameManager : MonoBehaviour
 
     public void ResetGame ()
     {
+        playerCurretScore = 0;
+        UpdateHud ();
         gameState = GameState.PLAYING;
         gameOverMenu.SetActive (false);
-        playerCurretScore = 0;
         controller.ResetController ();
     }
 

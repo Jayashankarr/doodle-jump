@@ -15,6 +15,11 @@ public class GameOverMenu : MonoBehaviour
     private Text playerName; 
     private void Start ()
     {
+        
+    }
+
+    private void OnEnable ()
+    {
         currentScore.text = GameManager.Instance.GetPlayerCurrentScore().ToString();
 
         highScore.text = GameManager.Instance.GetPlayerHighScore().ToString();
@@ -22,6 +27,6 @@ public class GameOverMenu : MonoBehaviour
 
     public void ChangeUserName ()
     {
-        //PlayFabManager.Instance.UpdateName (playerName.text);
+        
     }
 }
