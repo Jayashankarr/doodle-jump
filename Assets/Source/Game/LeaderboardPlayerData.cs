@@ -1,7 +1,10 @@
-﻿public class LeadboardPlayerData
+﻿namespace doodle
 {
-    public string Name;
-    public string userID;
-    public int position;
-    public int score;
+    public class LeadboardPlayerData
+    {
+        public string Name;
+        public string userID;
+        public int position;
+        public int score;
+    }
 }
