@@ -20,11 +20,10 @@ public class Bullet : MonoBehaviour
 
     private void setBulletTrajectory ()
     {
-        //transform.position = Vector3.zero;
         Rigidbody2D rb = GetComponent<Rigidbody2D> ();
         moveDirection = (target - transform.position).normalized * moveSpeed;
         moveDirection.y = Mathf.Clamp (moveDirection.y, -2, 2);
-        rb.AddForce (moveDirection)    ;// = new Vector2 (moveDirection.x, moveDirection.y);
+        rb.velocity= new Vector2 (moveDirection.x, moveDirection.y);
     }
 
     // Update is called once per frame
@@ -34,7 +33,7 @@ public class Bullet : MonoBehaviour
         {
             gameObject.SetActive (false);
             Destroy(gameObject);
-            //setBulletTrajectory ();
+            setBulletTrajectory ();
         }
     }
 
