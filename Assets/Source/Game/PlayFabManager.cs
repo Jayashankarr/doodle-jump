@@ -30,8 +30,11 @@ public class PlayFabManager
             if (result.NewlyCreated) 
             {
                 Debug.Log ("(new account)");
-            } else 
+            } 
+            else 
             {
+                GetName (playFabId);
+
                 Debug.Log ("(existing account)");
             }
         },
@@ -40,7 +43,7 @@ public class PlayFabManager
             });
     }
 
-    public void UpdateName (string userName, Action<string> Callback)
+    public void UpdateName (string userName)
     {
         PlayFab.ClientModels.UpdateUserTitleDisplayNameRequest request = new PlayFab.ClientModels.UpdateUserTitleDisplayNameRequest () 
         {
@@ -49,7 +52,25 @@ public class PlayFabManager
 
         PlayFabClientAPI.UpdateUserTitleDisplayName (request, (result) => 
         {
+            
+        },
+        (error) =>
+        {
+            Debug.Log (error.ErrorMessage);
+        });
 
+    }
+
+    public void GetName (string playFabId)
+    {
+        PlayFab.ClientModels.GetPlayerProfileRequest request = new PlayFab.ClientModels.GetPlayerProfileRequest () 
+        {
+            PlayFabId = playFabId
+        };
+
+        PlayFabClientAPI.GetPlayerProfile (request, (result) => 
+        {
+            GameManager.Instance.UpdatePlayerName (result.PlayerProfile.DisplayName);
         },
         (error) =>
         {

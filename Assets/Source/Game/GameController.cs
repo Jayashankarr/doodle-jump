@@ -30,13 +30,13 @@ public class GameController : MonoBehaviour
 
     private void Start ()
     {
-        mainCamera = Camera.main;
         topLeft = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
         cachedCameraY = mainCamera.transform.position.y;
     }
 
     public void StartController ()
     {
+        mainCamera = Camera.main;
         Vector3 startPos = Camera.main.ViewportToWorldPoint (new Vector3 (0,0,0));   
         doodle.SetActive (true);
         lastCreatedLevelPosition = startPos;
@@ -140,8 +140,7 @@ public class GameController : MonoBehaviour
 
     public void ResetController ()
     {
-        StartController ();
         levelGenerator.GetComponent<LevelSpawner>().ResetGenerator ();
-        doodle.SetActive (true);
+        StartController ();
     }
 }

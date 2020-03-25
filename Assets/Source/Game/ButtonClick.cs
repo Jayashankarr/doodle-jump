@@ -22,4 +22,9 @@ public class ButtonClick : MonoBehaviour
     {
         GameManager.Instance.ResetGame ();
     }
+
+    public void OnScoreBoardbuttonClicked ()
+    {
+        GameManager.Instance.GetLeaderBoardData ();
+    }
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1534820118416725930}
   - component: {fileID: 1534820118416725940}
   - component: {fileID: 6518483108907820817}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: JumpPad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 2896376669803701917}
   - component: {fileID: 5441836495531638977}
   - component: {fileID: 7954748953597800181}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Rocket
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 1169190578129306678}
   - component: {fileID: 5721114190003684558}
   - component: {fileID: 6772471146175272784}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Spring
   m_TagString: Untagged
   m_Icon: {fileID: 0}

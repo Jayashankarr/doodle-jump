@@ -32,6 +32,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Text hudScoreText = null; 
 
+    [SerializeField]
+    private GameObject scoreBoard = null; 
+
     private GameState gameState = GameState.IDLE; 
 
     public static GameManager Instance = null;
@@ -43,6 +46,8 @@ public class GameManager : MonoBehaviour
     private int playerHighScore = 0;
 
     private GameController controller = null;
+
+    private Hud hudScript = null;
     
     void Start()
     {
@@ -52,6 +57,7 @@ public class GameManager : MonoBehaviour
         dataManager.Login (playFabId);
 
         controller = gameController.GetComponent<GameController>();
+        hudScript = hud.GetComponent<Hud>();
     }
 
     public GameController GameController ()
@@ -61,6 +67,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame ()
     {
+        hud.SetActive (true);
         startScreen.SetActive (false);
         gameController.SetActive (true);
         controller.StartController ();
@@ -69,7 +76,8 @@ public class GameManager : MonoBehaviour
 
     public void UpdatePlayerName (string name)
     {
-        //dataManager.UpdateName (name);
+        dataManager.UpdateName (name);
+        hudScript.UpdateName (name);
     }
 
     public void GameOver ()
@@ -133,7 +141,7 @@ public class GameManager : MonoBehaviour
 
     private void UpdateHud ()
     {
-        hudScoreText.text = playerCurretScore.ToString();
+        hudScript.UpdateScore (playerCurretScore);
     }
 
     public int GetPlayerCurrentScore ()
@@ -154,5 +162,19 @@ public class GameManager : MonoBehaviour
 
             playerHighScore = playerCurretScore;
         }
+    }
+
+    public void GetLeaderBoardData ()
+    {
+        List<LeadboardPlayerData> data = new List<LeadboardPlayerData>();
+
+        dataManager.GetHighScoreLeaderboard (value =>
+            {
+                data = value;
+                scoreBoard.SetActive (true);
+                scoreBoard.GetComponent<ScoreBoard>().InitializeScoreBoard (data);
+            }
+
+        );
     }
 }
