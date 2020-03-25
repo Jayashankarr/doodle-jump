@@ -96,15 +96,15 @@ namespace doodle
 
             switch(rand)
             {
-                default:
+                case 1:
                 enemy = Instantiate (monster_2, spawnPosition, Quaternion.identity);
                 enemy.GetComponent<Enemy>().Type = EnemyType.SHOOTING;
                 break;
 
-                // default:
-                // enemy = Instantiate (monster_1, spawnPosition, Quaternion.identity);
-                // enemy.GetComponent<Enemy>().Type = EnemyType.MOVING;
-                // break;
+                default:
+                enemy = Instantiate (monster_1, spawnPosition, Quaternion.identity);
+                enemy.GetComponent<Enemy>().Type = EnemyType.MOVING;
+                break;
             }
 
             return enemy;
